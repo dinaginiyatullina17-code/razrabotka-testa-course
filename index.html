@@ -230,8 +230,14 @@ replaceMeme(theoryPage,'topmemas-test-dog.jpg','Мем с вопросом и н
 replaceMeme(formatExample,'topmemas-two-options.jpg','Мем о двух вариантах выбора','Когда выбираешь формат вопроса');
 replaceMeme(wordingExample,'topmemas-typo.jpg','Мем об опечатке и её последствиях','Когда одна опечатка меняет смысл');
 
+// Четыре новые картинки с короткими репликами из TOP MEMAS.
+{const t=document.createElement('template');t.innerHTML=cover.body;const f=t.content.querySelector('figure.cover-art');if(f){const img=f.querySelector('img'),caption=f.querySelector('figcaption');img.src='chosen-meme-516.jpg';img.alt='Лягушка: «Ну, допустим, ква»';caption.textContent='';}const out=document.createElement('div');out.append(t.content);cover.body=out.innerHTML;}
+replaceMeme(theoryPage,'chosen-meme-851.jpg','Мем «Держимся, пацаны»','');
+replaceMeme(formatExample,'chosen-meme-167.jpg','Кот с надписью «Господа на выход»','');
+replaceMeme(wordingExample,'chosen-meme-651.jpg','Кот и видеокамера с подписью об осуждении','');
+
 // Лёгкое движение животных вокруг мемов: фон не перекрывает изображение и текст.
-const animalForImage=src=>{if(/too-many-answers/.test(src))return ['bee','🐝'];if(/dog-podcast|topmemas-test-dog/.test(src))return ['dog','🐕'];if(/badger-question/.test(src))return ['badger','🦡'];if(/surprised-cat|meme-result-new|meme-one-many-new|meme-reading-new/.test(src))return ['cat','🐈'];return null};
+const animalForImage=src=>{if(/chosen-meme-516/.test(src))return ['frog','🐸'];if(/too-many-answers/.test(src))return ['bee','🐝'];if(/dog-podcast|topmemas-test-dog/.test(src))return ['dog','🐕'];if(/badger-question/.test(src))return ['badger','🦡'];if(/surprised-cat|meme-result-new|meme-one-many-new|meme-reading-new|chosen-meme-167|chosen-meme-651/.test(src))return ['cat','🐈'];return null};
 for(const page of pages){if(!page.body?.includes('<img'))continue;const template=document.createElement('template');template.innerHTML=page.body;for(const figure of template.content.querySelectorAll('figure')){const picture=figure.querySelector('img');if(!picture)continue;const animal=animalForImage(picture.getAttribute('src')||'');if(!animal)continue;figure.classList.add('animal-scene','animal-'+animal[0]);const track=document.createElement('div');track.className='animal-track';track.setAttribute('aria-hidden','true');track.innerHTML=`<span class="animal-walker walker-one">${animal[1]}</span><span class="animal-walker walker-two">${animal[1]}</span><span class="animal-walker walker-three">${animal[1]}</span>`;figure.appendChild(track);}const out=document.createElement('div');out.append(template.content);page.body=out.innerHTML;}
 
 // Животные гуляют по фону всей страницы, а не внутри рамки мема.
