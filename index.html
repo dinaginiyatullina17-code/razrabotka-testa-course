@@ -250,8 +250,8 @@ if(finalOptions){finalOptions.label='Финальная проверка · 2 и
 if(finalFeedback){finalFeedback.label='Финальная проверка · 3 из 3';finalFeedback.body='<p class="lead">Гость жалуется на долгое ожидание. Ученик выбрал ответ: «Попрошу Гостя подождать, не уточняя проблему».</p>';finalFeedback.q=quiz('Какая обратная связь поможет ученику исправить ошибку?',['Неверно. Выслушай Гостя и уточни проблему, чтобы понять причину жалобы, затем предложи решение','Неверно. Выслушай Гостя, но отложи уточнение проблемы до конца смены','Неверно. Прочитай условие внимательнее и выбери другой вариант','Неверно. Сообщи Гостю, что ожидание бывает у всех'],[0],'Обратная связь объясняет смысл действий и помогает исправить ошибку.','Выбери ответ, который объясняет причину и подсказывает следующие действия.');}
 
 // Обновляем иллюстрации и убираем лишние подписи.
-replaceMeme(formatExample,'meme-two-buttons.jpg','Мем: человек выбирает между двумя кнопками','Один или несколько?');
-replaceMeme(wordingExample,'meme-confused-math.jpg','Мем: озадаченная женщина пытается разобраться в формулах','Ничего не понятно');
+replaceMeme(formatExample,'meme-two-buttons.jpg','Мем: человек выбирает между двумя кнопками','');
+replaceMeme(wordingExample,'meme-confused-math.jpg','Мем: озадаченная женщина пытается разобраться в формулах','');
 for(const title of ['Как придумать неверные ответы','Объясни, что делать дальше']){const page=pages.find(p=>p.title===title);if(page){const t=document.createElement('template');t.innerHTML=page.body;t.content.querySelectorAll('figure.meme-panel figcaption').forEach(c=>c.remove());const out=document.createElement('div');out.append(t.content);page.body=out.innerHTML;}}
 const finalIntro=pages.find(p=>p.title==='Проверь себя');if(finalIntro)finalIntro.body='<p class="lead">Теперь примени правила на примере курса «Гостемания». Тебя ждут три задания о том, как составить тест по работе с жалобой Гостя.</p>';
 // Лёгкое движение животных вокруг мемов: фон не перекрывает изображение и текст.
